@@ -1,5 +1,7 @@
 #!/bin/sh
 set -eux
+lxc storage create default dir
+lxc storage create aytest dir
 lxc storage list
 lxc launch ubuntu:20.04 -p default -s default toto
 lxc exec toto -- ls -al
