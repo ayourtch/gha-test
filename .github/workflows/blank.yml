@@ -30,7 +30,9 @@ jobs:
         run: echo Hello, world!
 
       - name: print directory
-        run: pwd
+        run: |
+          pwd
+          ls -alR
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
