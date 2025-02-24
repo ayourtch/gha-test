@@ -1,7 +1,8 @@
 #!/bin/sh
 set -eux
 sudo snap install lxd
-sudo lxd init --preseed lxd-preseed.yaml
+# sudo lxd init --preseed lxd-preseed.yaml
+sudo lxd init --preseed /dev/null
 sudo usermod -a -G lxd $(whoami)
 ls -la /home/$(whoami)
 groups
