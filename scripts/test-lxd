@@ -3,8 +3,12 @@ set -eux
 lxc storage create default dir
 lxc storage create aytest dir
 lxc storage list
-lxc launch ubuntu:20.04 -p default -s default toto
+lxc launch ubuntu:20.04 -p default -s default toto 2>/tmp/launch-container.txt
 lxc exec toto -- ls -al
-lxc launch ubuntu:24.04 ubuntu2404-vm -p default -s default --vm
-lxc launch ubuntu:22.04 ubuntu2204-vm -p default -s default --vm
-lxc exec ubuntu2204-vm -- ls -la
+lxc launch ubuntu:24.04 ubuntu2404-vm -p default -s default --vm 2>/tmp/launch-2404.txt
+# lxc launch ubuntu:22.04 ubuntu2204-vm -p default -s default --vm 2>/tmp/launch-2204.txt
+lxc list
+sleep 15
+lxc list
+lxc exec ubuntu2204-vm -- uname -a
+
