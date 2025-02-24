@@ -5,6 +5,6 @@ lxc storage create aytest dir
 lxc storage list
 lxc launch ubuntu:20.04 -p default -s default toto
 lxc exec toto -- ls -al
-lxc launch ubuntu:24.04 ubuntu2404-vm --vm
-lxc launch ubuntu:22.04 ubuntu2204-vm --vm
+lxc launch ubuntu:24.04 ubuntu2404-vm -p default -s default --vm
+lxc launch ubuntu:22.04 ubuntu2204-vm -p default -s default --vm
 lxc exec ubuntu2204-vm -- ls -la
