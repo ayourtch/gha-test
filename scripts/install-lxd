@@ -2,5 +2,6 @@
 set -eux
 sudo snap install lxd
 sudo lxd init --preseed lxd-preseed.yaml
+usermod -a -G lxd $(whoami)
 groups
 cat /etc/group
