@@ -3,5 +3,6 @@ set -eux
 sudo snap install lxd
 sudo lxd init --preseed lxd-preseed.yaml
 sudo usermod -a -G lxd $(whoami)
+ls -la /home/$(whoami)
 groups
 cat /etc/group

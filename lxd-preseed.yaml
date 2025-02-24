@@ -28,7 +28,7 @@ networks:
   type: bridge
 storage_pools:
 - config:
-    source: /var/snap/lxd/common/lxd/storage-pools/default
+    source: /home/runner/lxd-pools/default
   description: ""
   name: default
   driver: dir
