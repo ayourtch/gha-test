@@ -1,24 +1,6 @@
 config: {}
 networks:
 - config:
-    ipv4.nat: "false"
-    ipv6.nat: "false"
-  description: ""
-  name: NET1
-  type: bridge
-- config:
-    ipv4.nat: "false"
-    ipv6.nat: "false"
-  description: ""
-  name: NET2
-  type: bridge
-- config:
-    ipv4.nat: "false"
-    ipv6.nat: "false"
-  description: ""
-  name: NET3
-  type: bridge
-- config:
     ipv4.address: 10.42.42.1/24
     ipv4.nat: "true"
     ipv6.address: fd42:e0ee:a635:9fa3::1/64
@@ -32,51 +14,8 @@ storage_pools:
   description: ""
   name: default
   driver: dir
+storage_volumes: []
 profiles:
-- config: {}
-  description: ""
-  devices:
-    shared:
-      path: /home/ubuntu/repo
-      source: /home/runner/work/gha-test/gha-test
-      type: disk
-  name: browser
-- config: {}
-  description: NET1 service profile
-  devices:
-    eth0:
-      name: eth0
-      network: NET1
-      type: nic
-    root:
-      path: /
-      pool: default
-      type: disk
-  name: net1-service
-- config: {}
-  description: NET2 service profile
-  devices:
-    eth0:
-      name: eth0
-      network: NET2
-      type: nic
-    root:
-      path: /
-      pool: default
-      type: disk
-  name: net2-service
-- config: {}
-  description: NET3 service profile
-  devices:
-    eth0:
-      name: eth0
-      network: NET3
-      type: nic
-    root:
-      path: /
-      pool: default
-      type: disk
-  name: net3-service
 - config: {}
   description: Default LXD profile
   devices:
@@ -127,16 +66,11 @@ profiles:
       source: /home/runner/gha-actions/gha-actions
       type: disk
   name: shared
-- config: {}
-  description: ""
-  devices:
-    tun:
-      path: /dev/net/tun
-      type: unix-char
-  name: tuntap
-- config: {}
-  description: ""
-  devices: {}
-  name: usb-embed
-
-
+projects:
+- config:
+    features.images: "true"
+    features.networks: "true"
+    features.networks.zones: "true"
+    features.profiles: "true"
+    features.storage.buckets: "true"
+    features.storage.volumes: "true"
