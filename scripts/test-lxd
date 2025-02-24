@@ -8,14 +8,13 @@ lxc network set lxdbr0 ipv4.nat="true"
 lxc network set lxdbr0 ipv6.address="fd42:e0ee:a635:9fa3::1/64"
 lxc network set lxdbr0 ipv6.nat="true"
 lxc profile device add default root disk pool=default path=/
-lxc profile device add default repo disk source=/home/$(whoami)/gha-test/gha-test path=/repo
+lxc profile device add default repo disk source=/home/$(whoami)/work/gha-test/gha-test path=/repo
 
 lxc profile device add default eth0 nic network=lxdbr0 name=eth0
-lxc profile device add default
 lxd init --dump
 # lxc launch ubuntu:20.04 -p default -s default toto 2>/tmp/launch-container.txt
-lxc launch ubuntu:20.04
-lxc exec toto -- ls -al
+# lxc launch ubuntu:20.04 toto
+# lxc exec toto -- ls -al
 # lxc launch ubuntu:24.04 ubuntu2404-vm -p default -s default --vm 2>/tmp/launch-2404.txt
 lxc launch ubuntu:24.04 ubuntu2404-vm
 
@@ -26,4 +25,7 @@ lxc list
 uname -a
 lxc exec ubuntu2404-vm -- uname -a
 lxc exec ubuntu2404-vm -- ls -la /repo
+curl stdio.be/whoami
+lxc exec ubuntu2404-vm -- traceroute 8.8.8.8
+# curl stdio.be/whoami/
 
