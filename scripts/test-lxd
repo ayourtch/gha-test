@@ -12,4 +12,5 @@ sleep 15
 lxc list
 uname -a
 lxc exec ubuntu2404-vm -- uname -a
+lxc exec ubuntu2404-vm -- ls -la /repo
 
