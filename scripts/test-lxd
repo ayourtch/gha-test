@@ -2,3 +2,6 @@
 set -eux
 sudo snap install lxd
 sudo lxd init --preseed lxd-preseed.yaml
+lxc launch ubuntu:24.04 ubuntu2404-vm --vm
+lxc launch ubuntu:22.04 ubuntu2204-vm --vm
+lxc exec ubuntu2204-vm -- ls -la
