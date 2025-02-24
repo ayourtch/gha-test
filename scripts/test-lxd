@@ -1,5 +1,7 @@
 #!/bin/sh
 set -eux
+lxc storage create default dir
+lxc storage list
 lxc network create lxdbr0
 lxc network set lxdbr0 ipv4.address="10.42.42.1/24"
 lxc network set lxdbr0 ipv4.nat="true"
@@ -9,11 +11,8 @@ lxc profile device add default root disk pool=default path=/
 lxc profile device add default repo disk source=/home/$(whoami)/gha-test/gha-test path=/repo
 
 lxc profile device add default eth0 nic network=lxdbr0 name=eth0
-lxc proflie device add default
+lxc profile device add default
 lxd init --dump
-lxc storage create default dir
-lxc storage create aytest dir
-lxc storage list
 # lxc launch ubuntu:20.04 -p default -s default toto 2>/tmp/launch-container.txt
 lxc launch ubuntu:20.04
 lxc exec toto -- ls -al
