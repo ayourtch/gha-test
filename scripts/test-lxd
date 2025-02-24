@@ -1,5 +1,8 @@
 #!/bin/sh
 set -eux
+lxc storage list
+lxc launch ubuntu:20.04 -p default -s default toto
+lxc exec toto -- ls -al
 lxc launch ubuntu:24.04 ubuntu2404-vm --vm
 lxc launch ubuntu:22.04 ubuntu2204-vm --vm
 lxc exec ubuntu2204-vm -- ls -la
