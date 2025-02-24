@@ -10,5 +10,6 @@ lxc launch ubuntu:24.04 ubuntu2404-vm -p default -s default --vm 2>/tmp/launch-2
 lxc list
 sleep 15
 lxc list
-lxc exec ubuntu2204-vm -- uname -a
+uname -a
+lxc exec ubuntu2404-vm -- uname -a
 
