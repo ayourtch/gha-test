@@ -1,5 +1,6 @@
 #!/bin/sh
 set -eux
+lxd init --dump
 lxc storage create default dir
 lxc storage create aytest dir
 lxc storage list
