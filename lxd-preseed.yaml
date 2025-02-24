@@ -1,0 +1,142 @@
+config: {}
+networks:
+- config:
+    ipv4.nat: "false"
+    ipv6.nat: "false"
+  description: ""
+  name: NET1
+  type: bridge
+- config:
+    ipv4.nat: "false"
+    ipv6.nat: "false"
+  description: ""
+  name: NET2
+  type: bridge
+- config:
+    ipv4.nat: "false"
+    ipv6.nat: "false"
+  description: ""
+  name: NET3
+  type: bridge
+- config:
+    ipv4.address: 10.42.42.1/24
+    ipv4.nat: "true"
+    ipv6.address: fd42:e0ee:a635:9fa3::1/64
+    ipv6.nat: "true"
+  description: ""
+  name: lxdbr0
+  type: bridge
+storage_pools:
+- config:
+    source: /var/snap/lxd/common/lxd/storage-pools/default
+  description: ""
+  name: default
+  driver: dir
+profiles:
+- config: {}
+  description: ""
+  devices:
+    shared:
+      path: /home/ubuntu/repo
+      source: /home/runner/work/gha-test/gha-test
+      type: disk
+  name: browser
+- config: {}
+  description: NET1 service profile
+  devices:
+    eth0:
+      name: eth0
+      network: NET1
+      type: nic
+    root:
+      path: /
+      pool: default
+      type: disk
+  name: net1-service
+- config: {}
+  description: NET2 service profile
+  devices:
+    eth0:
+      name: eth0
+      network: NET2
+      type: nic
+    root:
+      path: /
+      pool: default
+      type: disk
+  name: net2-service
+- config: {}
+  description: NET3 service profile
+  devices:
+    eth0:
+      name: eth0
+      network: NET3
+      type: nic
+    root:
+      path: /
+      pool: default
+      type: disk
+  name: net3-service
+- config: {}
+  description: Default LXD profile
+  devices:
+    eth0:
+      name: eth0
+      network: lxdbr0
+      type: nic
+    root:
+      path: /
+      pool: default
+      type: disk
+  name: default
+- config: {}
+  description: ""
+  devices:
+    root:
+      path: /
+      pool: default
+      type: disk
+  name: default-no-network
+- config:
+    raw.lxc: |
+      lxc.mount.entry = hugetlbfs dev/hugepages hugetlbfs rw,relatime,create=dir 0 0
+    security.privileged: "true"
+  description: ""
+  devices: {}
+  name: hugepages
+- config:
+    raw.lxc: |
+      lxc.cgroup.devices.allow = a
+      lxc.cap.drop =
+  description: ""
+  devices: {}
+  name: nested-priv
+- config:
+    security.nesting: "true"
+    security.privileged: "true"
+    security.syscalls.intercept.mknod: "true"
+    security.syscalls.intercept.setxattr: "true"
+  description: ""
+  devices: {}
+  name: nesting
+- config: {}
+  description: ""
+  devices:
+    shared:
+      path: /repo
+      source: /home/runner/gha-actions/gha-actions
+      type: disk
+  name: shared
+- config: {}
+  description: ""
+  devices:
+    tun:
+      path: /dev/net/tun
+      type: unix-char
+  name: tuntap
+- config: {}
+  description: ""
+  devices: {}
+  name: usb-embed
+
+
