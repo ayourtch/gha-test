@@ -5,4 +5,4 @@ sudo lxd init --preseed lxd-preseed.yaml
 sudo usermod -a -G lxd $(whoami)
 ls -la /home/$(whoami)
 groups
-sudo xd init --dump
+sudo lxd init --dump
