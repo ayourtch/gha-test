@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eux
+sudo snap install lxd
+sudo lxd init --preseed lxd-preseed.yaml
+groups
+cat /etc/group
